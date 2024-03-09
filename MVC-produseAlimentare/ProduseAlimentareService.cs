@@ -45,6 +45,7 @@ namespace MVC_produseAlimentare
 
         }
 
+        //Crud
         public void AfisareProduseAlimentare()
         {
             foreach(ProduseAlimentare x in ProduseAlimentareList)
@@ -52,5 +53,40 @@ namespace MVC_produseAlimentare
                 Console.WriteLine(x.InfoAlimente());
             }
         }
+
+        public int FindProdusAlimentarByName(string numeProdus)
+        {
+            for (int i = 0; i < ProduseAlimentareList.Count; i++)
+            {
+                if (ProduseAlimentareList[i].produs == numeProdus)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        public bool AddProdusAlimentarInList(ProduseAlimentare ProdusNou)
+        {
+            if (FindProdusAlimentarByName(ProdusNou.produs) == -1)
+            {
+                this.ProduseAlimentareList.Add(ProdusNou);
+                return true;
+            }
+            return false;
+        }
+
+        public bool RemoveProdusAlimentarByName(string ProdusCautat)
+        {
+            int ProdusulCautatIndex = FindProdusAlimentarByName(ProdusCautat);
+            if (ProdusulCautatIndex != -1)
+            {
+                ProduseAlimentareList.RemoveAt(ProdusulCautatIndex);
+                return true;
+            }
+            return false;
+        }
+
+        //View
     }
 }

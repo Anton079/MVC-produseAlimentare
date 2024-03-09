@@ -8,6 +8,12 @@ internal class Program
 
         service.LoadData();
 
+        ProduseAlimentare produsNou = new ProduseAlimentare();
+        produsNou.produs = "Ulei de masline";
+        produsNou.pret = 20;
+        produsNou.cantitate = 1;
+
+
         service.AfisareProduseAlimentare();
     }
 }
