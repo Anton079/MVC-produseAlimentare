@@ -88,5 +88,68 @@ namespace MVC_produseAlimentare
         }
 
         //View
+
+        public bool BuyProdusAli(string ProdusDorit)
+        {
+            for (int i = 0; i < ProduseAlimentareList.Count; i++)
+            {
+                if (ProduseAlimentareList[i].produs == ProdusDorit)
+                {
+                    ProduseAlimentareList.RemoveAt(i);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool AddProdusInList(ProduseAlimentare ProdusNou)
+        {
+            if (FindProdusAlimentarByName(ProdusNou.produs) != -1)
+            {
+                this.ProduseAlimentareList.Add(ProdusNou);
+                return true;
+            }
+            return false;
+        }
+
+        //EDIT
+        public bool EditProdusALimentaPret(string produsDorit, int pret)
+        {
+            foreach (ProduseAlimentare x in ProduseAlimentareList)
+            {
+                if (x.produs == produsDorit)
+                {
+                    x.pret = pret;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool EditProdusALimentaDenumire(string produsDorit, string denumire)
+        {
+            foreach (ProduseAlimentare x in ProduseAlimentareList)
+            {
+                if (x.produs == produsDorit)
+                {
+                    x.produs = denumire;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool EditProdusALimentaCantitate(string produsDorit, int cantitate)
+        {
+            foreach (ProduseAlimentare x in ProduseAlimentareList)
+            {
+                if (x.produs == produsDorit)
+                {
+                    x.cantitate = cantitate;
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
