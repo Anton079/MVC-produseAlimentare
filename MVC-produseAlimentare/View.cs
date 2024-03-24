@@ -8,8 +8,12 @@ namespace MVC_produseAlimentare
 {
     public class View
     {
-        ProduseAlimentareService produseAlimentareService = new ProduseAlimentareService();
+        private ProduseAlimentareService _produseAlimentareService;
 
+        public View()
+        {
+            _produseAlimentareService = new ProduseAlimentareService();
+        }
         public void Meniu()
         {
             Console.WriteLine("Apasati tasta 1 pentru a afisa toate Produsele");
@@ -22,7 +26,7 @@ namespace MVC_produseAlimentare
         {
             bool running = true;
 
-            produseAlimentareService.LoadData();
+            _produseAlimentareService.LoadData();
 
             while (running)
             {
@@ -32,7 +36,7 @@ namespace MVC_produseAlimentare
                 switch (alegere)
                 {
                     case "1":
-                        produseAlimentareService.AfisareProduseAlimentare();
+                        _produseAlimentareService.AfisareProduseAlimentare();
                         break;
 
                     case "2":
@@ -65,7 +69,7 @@ namespace MVC_produseAlimentare
             Console.WriteLine("La ce pret doriti un produs?");
             string produsPrice = Console.ReadLine();
 
-            if (produseAlimentareService.FindProdusAlimentarByName(produsPrice) != -1)
+            if (_produseAlimentareService.FindProdusAlimentarByName(produsPrice) != -1)
             {
                 Console.WriteLine("Avem la acest pret!");
             }
@@ -80,10 +84,10 @@ namespace MVC_produseAlimentare
         public void BuyProdusAlimentar()
         {
             Console.WriteLine("Ce produs doriti sa cumparati din lista de mai jos?");
-            produseAlimentareService.AfisareProduseAlimentare();
+            _produseAlimentareService.AfisareProduseAlimentare();
             string produsDorit = Console.ReadLine();
 
-            if (produseAlimentareService.BuyProdusAli(produsDorit) != false)
+            if (_produseAlimentareService.BuyProdusAli(produsDorit) != false)
             {
                 Console.WriteLine("Produsul a fost achizitionate cu succes!");
             }
@@ -120,7 +124,7 @@ namespace MVC_produseAlimentare
             Console.WriteLine("Cu ce pret vreti sa il modificati?");
             int newPrice = Int32.Parse(Console.ReadLine());
 
-            if (produseAlimentareService.EditProdusALimentaPret(preodusAles, newPrice))
+            if (_produseAlimentareService.EditProdusALimentaPret(preodusAles, newPrice))
             {
                 Console.WriteLine("Pretul produsului a fost modificata cu succes!");
             }
@@ -138,7 +142,7 @@ namespace MVC_produseAlimentare
             Console.WriteLine("Cu ce denumire vreti sa il modificati?");
             string newName = Console.ReadLine();
 
-            if (produseAlimentareService.EditProdusALimentaDenumire(denumireaNew, newName))
+            if (_produseAlimentareService.EditProdusALimentaDenumire(denumireaNew, newName))
             {
                 Console.WriteLine("Denumirea produsului a fost modificata cu succes!");
             }
@@ -156,7 +160,7 @@ namespace MVC_produseAlimentare
             Console.WriteLine("Cu ce cantitate vreti sa il modificati?");
             int newCantitate = Int32.Parse(Console.ReadLine());
 
-            if (produseAlimentareService.EditProdusALimentaCantitate(produsNewCant, newCantitate))
+            if (_produseAlimentareService.EditProdusALimentaCantitate(produsNewCant, newCantitate))
             {
                 Console.WriteLine("Cantitatea a fost modificata cu succes!");
             }

@@ -8,9 +8,27 @@ namespace MVC_produseAlimentare
 {
     public class ProduseAlimentare
     {
-        public string produs;
-        public int pret;
-        public int cantitate;
+        public string _produs;
+        public int _pret;
+        public int _cantitate;
+
+        public string produs
+        {
+            get { return _produs; }
+            set { _produs = value; }
+        }
+
+        public int pret
+        {
+            get { return _pret; }
+            set { _pret = value; }
+        }
+
+        public int cantitate
+        {
+            get { return _cantitate; }
+            set { _cantitate = value; }
+        }
 
         public string InfoAlimente()
         {

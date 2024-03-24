@@ -8,7 +8,13 @@ namespace MVC_produseAlimentare
 {
     public class ProduseAlimentareService
     {
-        public List <ProduseAlimentare> ProduseAlimentareList = new List<ProduseAlimentare>();
+        private List <ProduseAlimentare> _ProduseAlimentareList;
+
+        public ProduseAlimentareService()
+        {
+            _ProduseAlimentareList = new List<ProduseAlimentare>();
+            this.LoadData();
+        }
 
         public void LoadData()
         {
@@ -37,18 +43,18 @@ namespace MVC_produseAlimentare
             Produs5.cantitate = 2;
             Produs5.produs = "Malai Romanesc";
 
-            this.ProduseAlimentareList.Add(Produs1);
-            this.ProduseAlimentareList.Add(Produs2);
-            this.ProduseAlimentareList.Add(Produs3);
-            this.ProduseAlimentareList.Add(Produs4);
-            this.ProduseAlimentareList.Add(Produs5);
+            this._ProduseAlimentareList.Add(Produs1);
+            this._ProduseAlimentareList.Add(Produs2);
+            this._ProduseAlimentareList.Add(Produs3);
+            this._ProduseAlimentareList.Add(Produs4);
+            this._ProduseAlimentareList.Add(Produs5);
 
         }
 
         //Crud
         public void AfisareProduseAlimentare()
         {
-            foreach(ProduseAlimentare x in ProduseAlimentareList)
+            foreach(ProduseAlimentare x in _ProduseAlimentareList)
             {
                 Console.WriteLine(x.InfoAlimente());
             }
@@ -56,9 +62,9 @@ namespace MVC_produseAlimentare
 
         public int FindProdusAlimentarByName(string numeProdus)
         {
-            for (int i = 0; i < ProduseAlimentareList.Count; i++)
+            for (int i = 0; i < _ProduseAlimentareList.Count; i++)
             {
-                if (ProduseAlimentareList[i].produs == numeProdus)
+                if (_ProduseAlimentareList[i].produs == numeProdus)
                 {
                     return i;
                 }
@@ -70,7 +76,7 @@ namespace MVC_produseAlimentare
         {
             if (FindProdusAlimentarByName(ProdusNou.produs) == -1)
             {
-                this.ProduseAlimentareList.Add(ProdusNou);
+                this._ProduseAlimentareList.Add(ProdusNou);
                 return true;
             }
             return false;
@@ -81,7 +87,7 @@ namespace MVC_produseAlimentare
             int ProdusulCautatIndex = FindProdusAlimentarByName(ProdusCautat);
             if (ProdusulCautatIndex != -1)
             {
-                ProduseAlimentareList.RemoveAt(ProdusulCautatIndex);
+                _ProduseAlimentareList.RemoveAt(ProdusulCautatIndex);
                 return true;
             }
             return false;
@@ -91,11 +97,11 @@ namespace MVC_produseAlimentare
 
         public bool BuyProdusAli(string ProdusDorit)
         {
-            for (int i = 0; i < ProduseAlimentareList.Count; i++)
+            for (int i = 0; i < _ProduseAlimentareList.Count; i++)
             {
-                if (ProduseAlimentareList[i].produs == ProdusDorit)
+                if (_ProduseAlimentareList[i].produs == ProdusDorit)
                 {
-                    ProduseAlimentareList.RemoveAt(i);
+                    _ProduseAlimentareList.RemoveAt(i);
                     return true;
                 }
             }
@@ -106,7 +112,7 @@ namespace MVC_produseAlimentare
         {
             if (FindProdusAlimentarByName(ProdusNou.produs) != -1)
             {
-                this.ProduseAlimentareList.Add(ProdusNou);
+                this._ProduseAlimentareList.Add(ProdusNou);
                 return true;
             }
             return false;
@@ -115,7 +121,7 @@ namespace MVC_produseAlimentare
         //EDIT
         public bool EditProdusALimentaPret(string produsDorit, int pret)
         {
-            foreach (ProduseAlimentare x in ProduseAlimentareList)
+            foreach (ProduseAlimentare x in _ProduseAlimentareList)
             {
                 if (x.produs == produsDorit)
                 {
@@ -128,7 +134,7 @@ namespace MVC_produseAlimentare
 
         public bool EditProdusALimentaDenumire(string produsDorit, string denumire)
         {
-            foreach (ProduseAlimentare x in ProduseAlimentareList)
+            foreach (ProduseAlimentare x in _ProduseAlimentareList)
             {
                 if (x.produs == produsDorit)
                 {
@@ -141,7 +147,7 @@ namespace MVC_produseAlimentare
 
         public bool EditProdusALimentaCantitate(string produsDorit, int cantitate)
         {
-            foreach (ProduseAlimentare x in ProduseAlimentareList)
+            foreach (ProduseAlimentare x in _ProduseAlimentareList)
             {
                 if (x.produs == produsDorit)
                 {

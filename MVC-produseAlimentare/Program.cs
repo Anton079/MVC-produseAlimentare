@@ -4,16 +4,8 @@ internal class Program
 {
     public static void Main(string[] args)
     {
-        ProduseAlimentareService service = new ProduseAlimentareService();
+        View view = new View();
 
-        service.LoadData();
-
-        ProduseAlimentare produsNou = new ProduseAlimentare();
-        produsNou.produs = "Ulei de masline";
-        produsNou.pret = 20;
-        produsNou.cantitate = 1;
-
-
-        service.AfisareProduseAlimentare();
+        view.play();
     }
 }
